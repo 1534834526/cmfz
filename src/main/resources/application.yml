@@ -1,14 +1,22 @@
 server:
   context-path: /cmfz
   port: 8089
+  jsp-servlet:
+    init-parameters:
+      development: true
 
 spring:
   datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
-    url: mysql://127.0.0.1:3306/cmfz?characterEncoding=UTF-8
+    url: jdbc:mysql://127.0.0.1:3306/cmfz?characterEncoding=UTF-8
     username: root
     password: 123456
-    type: com.alibaba.druid.pool.DruidDataSource
+  mvc:
+    view:
+      prefix: /
+      suffix: .jsp
+
 
 mybatis:
   type-aliases-package: com.baizhi.entity
