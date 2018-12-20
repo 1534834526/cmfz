@@ -1,16 +1,74 @@
 ﻿<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>持名法州主页</title>
     <link rel="stylesheet" type="text/css" href="../themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="../themes/IconExtension.css">
+    <link rel="stylesheet" type="text/css" href="../themes/icon.css">
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/datagrid-detailview.js"></script>
+    <script type="text/javascript" src="../js/jquery.edatagrid.js"></script>
     <script type="text/javascript" src="../js/easyui-lang-zh_CN.js"></script>
+    <style type="text/css">
+        #m2 {
+            position: relative;
+            left: 40px;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                type: "get",
+                url: "${pageContext.request.contextPath}/menu/menuQuery",
+                dataType: "JSON",
+                success: function (data) {
+                    //console.log(data);
+                    $.each(data, function (index, menu1) {
+
+                        var a = "";
+                        $.each(menu1.list, function (index, menu2) {
+                            console.log(menu2.url);
+                            a += "<div id='m2'><a class='easyui-linkbutton' onclick=\"addTab('" + menu2.title + "','" + menu2.iconcls + "','" + menu2.url + "')\" data-options=\"text:'" + menu2.title + "',iconCls:'" + menu2.iconcls + "'\"/></div>";
+                        });
+                        $("#aa").accordion("add", {
+                            title: menu1.title,
+                            content: a,
+                            iconCls: menu1.iconcls,
+                            selected: false
+
+
+                        });
+                    });
+
+                }
+            });
+
+        });
+
+        //点击左边触发函数，创建选项卡，选项卡去加载选项卡面板页面。
+        function addTab(title, iconcls, url) {
+            console.log(url);
+            //选项卡的名字，图标，url（是填充到选项卡面板的jsp页面，jsp中请求后台数据）
+            var bool = $("#tt").tabs("exists", title);
+            if (bool) {
+                $('#tt').tabs("select", title);
+            } else {
+                $('#tt').tabs('add', {
+                    title: title,
+                    selected: true,
+                    iconCls: iconcls,
+                    href: "${pageContext.request.contextPath}/main" + url,
+                    closable: true
+                });
+            }
+
+        }
+    </script>
 
 </head>
+
 
 
 <body class="easyui-layout">
@@ -26,13 +84,16 @@
 </div>
 
 
-<div data-options="region:'south',split:true" style="height: 40px;background: #5C160C">
+<div data-options="region:'south',split:true" style="height: 40px;background: #5C">
     <div style="text-align: center;font-size:15px; color: #FAF7F7;font-family: 楷体">&copy;百知教育 htf@zparkhr.com.cn</div>
 </div>
 
 
-<div data-options="region:'west',title:'导航菜单',split:true,href:'${pageContext.request.contextPath}/main/left.jsp'"
+<div data-options="region:'west',title:'导航菜单',split:true"
      style="width:220px;">
+    <div id="aa" class="easyui-accordion" style="width:300px;height:550px;">
+
+    </div>
 
 </div>
 

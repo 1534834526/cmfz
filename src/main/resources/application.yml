@@ -20,3 +20,4 @@ spring:
 
 mybatis:
   type-aliases-package: com.baizhi.entity
+  mapper-locations: classpath:mapper/*Mapper.xml
