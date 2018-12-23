@@ -37,8 +37,6 @@
                             content: a,
                             iconCls: menu1.iconcls,
                             selected: false
-
-
                         });
                     });
 
@@ -47,18 +45,20 @@
 
         });
 
-        //点击左边触发函数，创建选项卡，选项卡去加载选项卡面板页面。
+        //点击左边触发函数，创建选项卡，获得选项卡标题，获得选项卡的面板内容(由另一个页面提供)。
         function addTab(title, iconcls, url) {
-            console.log(url);
+
             //选项卡的名字，图标，url（是填充到选项卡面板的jsp页面，jsp中请求后台数据）
             var bool = $("#tt").tabs("exists", title);
             if (bool) {
                 $('#tt').tabs("select", title);
             } else {
+                /*添加一个选项卡，选项卡的标题，内容(选项卡=标题+内容(就是面板))*/
                 $('#tt').tabs('add', {
                     title: title,
                     selected: true,
                     iconCls: iconcls,
+                    //加载选项卡的面板内容
                     href: "${pageContext.request.contextPath}/main" + url,
                     closable: true
                 });

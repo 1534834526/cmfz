@@ -4,7 +4,7 @@ import com.baizhi.entity.Banner;
 import com.baizhi.entity.BannerDto;
 import com.baizhi.entity.ParamDto;
 import com.baizhi.mapper.BannerMapper;
-import org.apache.ibatis.session.RowBounds;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -23,11 +23,21 @@ public class BannerServiceImpl implements BannerService {
     @Override
     public BannerDto bannerQueryAll(Integer page, Integer rows) {
         BannerDto dto = new BannerDto();
+        //pagehelper插件的分页  需导入jar包
+        PageHelper.startPage(page,rows);
+        List<Banner> banners = bannerMapper.selectAll();
+        int i = bannerMapper.selectCount(new Banner());
+        dto.setRows(banners);
+        dto.setTotal(i);
+        System.out.println("12345678912345678");
 
+        //通用mapper的rowbounds方式分页
+        /* BannerDto dto = new BannerDto();
         int i = bannerMapper.selectCount(new Banner());
         dto.setTotal(i);
         List<Banner> banners = bannerMapper.selectByRowBounds(new Banner(), new RowBounds((page - 1) * rows, rows));
-        dto.setRows(banners);
+        dto.setRows(banners);*/
+
         return dto;
     }
 

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.mapper.AlbumMapper">
+
+
+    <resultMap id="rm1" type="com.baizhi.entity.Album">
+        <id property="id" column="alid"/>
+        <result property="title" column="title1"/>
+        <result property="count" column="count"/>
+        <result property="url" column="url1"/>
+        <result property="score" column="score"/>
+        <result property="author" column="author"/>
+        <result property="broadcast" column="broadcast"/>
+        <result property="brief" column="brief"/>
+        <result property="pubDate" column="pub_date"/>
+        <collection property="children" ofType="com.baizhi.entity.Chapter">
+            <id property="id" column="cid"/>
+            <result property="title" column="title2"/>
+            <result property="url" column="url2"/>
+            <result property="size" column="size"/>
+            <result property="duration" column="duration"/>
+        </collection>
+    </resultMap>
+
+    <select id="albumQueryAll" resultMap="rm1">
+        select a.id alid,a.title title1,a.count,a.url url1,a.score,a.author,a.broadcast,a.brief,a.pub_date,c.id cid,c.title title2,c.url url2,c.size,c.duration
+        from album a left join chapter c
+        on a.id=c.aid
+
+    </select>
+</mapper>

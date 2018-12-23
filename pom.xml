@@ -92,6 +92,48 @@
             <artifactId>mapper-spring-boot-starter</artifactId>
             <version>2.1.1</version>
         </dependency>
+        <!--分页jar-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>1.2.10</version>
+        </dependency>
+
+
+
+        <!-- https://mvnrepository.com/artifact/org/jaudiotagger -->
+        <!--音频jar-->
+        <dependency>
+            <groupId>org</groupId>
+            <artifactId>jaudiotagger</artifactId>
+            <version>2.0.3</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.clojars.automata/jl -->
+        <dependency>
+            <groupId>org.clojars.automata</groupId>
+            <artifactId>jl</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+        <!--FileUtils文件下载时所需jar-->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+
+
+
     </dependencies>
 
     <build>
@@ -107,6 +149,10 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.5.1</version>
+
+
+
+
                 <configuration>
                     <source>1.7</source>
                     <target>1.7</target>

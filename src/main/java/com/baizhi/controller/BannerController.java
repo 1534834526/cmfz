@@ -34,6 +34,7 @@ public class BannerController {
         banner.setImgPath("/images/" + filename);
         bannerService.addBanner(banner);
 
+
     }
 
     @RequestMapping("/deleteBanner")

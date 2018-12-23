@@ -19,6 +19,7 @@ import java.util.Date;
 public class Banner implements Serializable {
     @Id
     @KeySql(useGeneratedKeys = true)
+    //@GeneratedValue(generator = "JDBC")
     private Integer id;
     private String title;
     private String imgPath;
