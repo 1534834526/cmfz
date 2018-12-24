@@ -1,5 +1,7 @@
 package com.baizhi.entity;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
+import cn.afterturn.easypoi.excel.annotation.ExcelIgnore;
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,16 +22,24 @@ import java.util.Date;
 public class Chapter implements Serializable {
     @Id
     @KeySql(useGeneratedKeys = true)
+    @Excel(name = "编号")
     private String id;
+    @Excel(name = "标题")
     private String title;
+    @Excel(name = "文件大小")
     private String size;
     @DateTimeFormat(pattern = "HH:mm:ss")
     @JSONField(format = "HH:mm:ss")
-    private Date duration;
+    @Excel(name = "文件时长")
+    private String duration;
+    @Excel(name = "音频播放")
     private String url;
-    @Column(name="upload_date")
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JSONField(format = "yyyy-MM-dd")
+    @Excel(name = "发布日期", format = "YYYY年MM月dd日", width = 20)
+    @Column(name = "upload_date")
     private Date uploadDate;
+    @ExcelIgnore
     private String aid;
 }

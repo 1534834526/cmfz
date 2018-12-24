@@ -1,18 +1,26 @@
+import com.baizhi.AppStart;
 import com.baizhi.conf.ConvertFileSize;
+import com.baizhi.conf.ValidateImageCodeUtils;
 import com.baizhi.entity.Banner;
 import com.baizhi.mapper.BannerMapper;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 import tk.mybatis.mapper.entity.Example;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.UUID;
 
-/*
 @SpringBootTest(classes = AppStart.class)
-@RunWith(SpringRunner.class)*/
+@RunWith(SpringRunner.class)
 public class test {
     @Autowired
     private BannerMapper bannerMapper;
@@ -31,17 +39,17 @@ public class test {
 
     @Test
     public void test2() throws IOException {
-        /*UUID uuid = UUID.randomUUID();
+        UUID uuid = UUID.randomUUID();
         System.out.println(uuid);
         String securityCode = ValidateImageCodeUtils.getSecurityCode();
         System.out.println(securityCode);
-        */
+
 
         File file1 = new File("D:/images/1-1.png");
-     /*   if(file1.exists()) {
+        if (file1.exists()) {
             FileInputStream fis = new FileInputStream(file1);
             System.out.println(fis.available());
-        }*/
+        }
 
         String s = ConvertFileSize.convertFileSize(file1.length());
         System.out.println(s);
@@ -50,7 +58,7 @@ public class test {
 
     @Test
     public void test3() throws ParseException {
-       /* int seconds=540;
+        int seconds = 540;
         int temp=0;
         StringBuffer sb=new StringBuffer();
         temp = seconds/3600;
@@ -63,14 +71,8 @@ public class test {
         sb.append((temp<10)?"0"+temp:""+temp);
         SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
         Date date = dateFormat.parse(sb.toString());
-         System.out.println(date);*/
+        System.out.println(date);
     }
-
-    @Test
-    public void test4(){
-
-    }
-
 
 
 }

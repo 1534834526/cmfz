@@ -3,7 +3,7 @@
 
     $(function () {
 
-        var rid=${param.rid};
+        var rid = ${param.rid}
 
         $("#title1").textbox({
             required: true,

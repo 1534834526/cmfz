@@ -1,12 +1,10 @@
-
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"  isELIgnored="false" %>
 <script type="text/javascript">
-
     function urlFormatter(value,row,index){
         if(row.children==null) {
         }
         if(row.children==null){
-            return "<audio controls='controls' src=${pageContext.request.contextPath}"+row.url+"></audio>";
+            return "<audio controls='controls' src=${pageContext.request.contextPath}/music/" + row.url + "></audio>";
         }
 
     }
@@ -14,6 +12,13 @@
 
     $(function(){
         $('#tg').treegrid({
+            onDblClickRow: function (row) {
+                if (row.duration != null) {
+                    $("#chapterAutoPlayAddDialog").dialog("open");
+                    $("#audio").prop("src", "${pageContext.request.contextPath}/music/" + row.url);
+                }
+
+            },
             fitColumns:true,
             fit:true,
             animate:true,
@@ -74,42 +79,53 @@
                     iconCls:"icon-search",
                     handler: function(){
                         var row=$("#tg").treegrid("getSelected");
-                        var row1=$("#tg").treegrid("getParent",row.id);
-                        if(row!=null && row1==null){
-                            $("#chapterAddDialog").dialog({
-                                title: '添加音频对话框',
-                                width: 200,
-                                height: 120,
-                                closed: false,
-                                cache: false,
-                                href: '${pageContext.request.contextPath}/chapter/addChapter.jsp?rid='+row.id,
-                                modal: true
+                        if (row != null) {
+                            var row1 = $("#tg").treegrid("getParent", row.id);
+                            if (row != null && row1 == null) {
+                                $("#chapterAddDialog").dialog({
+                                    title: '添加音频对话框',
+                                    width: 200,
+                                    height: 120,
+                                    closed: false,
+                                    cache: false,
+                                    href: '${pageContext.request.contextPath}/chapter/addChapter.jsp?rid=' + row.id,
+                                    modal: true
 
-                            });
-                        }else{
-                            alert("请选择专辑行进行添加音频");
+                                });
+                            } else {
+                                alert("请选择专辑行");
+                            }
+                        } else {
+                            alert("请先选择行");
                         }
                     }
-                },{
+                }, {
                     text:"下载音频",
                     iconCls:"icon-remove",
                     handler: function(){
                         var row=$("#tg").treegrid("getSelected");
-                        var row1=$("#tg").treegrid("getParent",row.id);
-                        if(row!=null && row1!=null){
-                            window.location.href="${pageContext.request.contextPath}/chapter/downloadChapter?musicUrl="+row.url;
-                           /* $.ajax({
-                                type:"post",
-                                url:"",
-                                data:",
-
-                                success:function(data){
-
-                                }
-                            });*/
-                        }else{
-                            alert("请选择音频行");
+                        if (row != null) {
+                            var row1 = $("#tg").treegrid("getParent", row.id);
+                            if (row != null && row1 != null) {
+                                window.location.href = "${pageContext.request.contextPath}/chapter/downloadChapter?musicUrl=" + row.url + "&title=" + row.title;
+                            } else {
+                                alert("请选择音频行");
+                            }
+                        } else {
+                            alert("请先选择行");
                         }
+                    }
+                }, {
+                    text: "导入",
+                    iconCls: "icon-add",
+                    handler: function () {
+
+                    }
+                }, {
+                    text: "导出",
+                    iconCls: "icon-print",
+                    handler: function () {
+                        window.location.href = "${pageContext.request.contextPath}/export/exportAllAlbum";
                     }
                 }
             ]
@@ -136,3 +152,10 @@
 <div id="albumAddDialog"></div>
 <%--音频对话框--%>
 <div id="chapterAddDialog"></div>
+
+<%--音频播放对话框--%>
+<div id="chapterAutoPlayAddDialog" class="easyui-dialog" data-options="closed:true,title:'正在播放'">
+    <div>
+        <audio id="audio" controls="controls" autoplay="autoplay" loop="loop"/>
+    </div>
+</div>

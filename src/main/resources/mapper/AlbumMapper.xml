@@ -20,11 +20,26 @@
             <result property="url" column="url2"/>
             <result property="size" column="size"/>
             <result property="duration" column="duration"/>
+            <result property="uploadDate" column="upload_date"/>
         </collection>
     </resultMap>
 
     <select id="albumQueryAll" resultMap="rm1">
-        select a.id alid,a.title title1,a.count,a.url url1,a.score,a.author,a.broadcast,a.brief,a.pub_date,c.id cid,c.title title2,c.url url2,c.size,c.duration
+        select a.id    alid,
+               a.title title1,
+               a.count,
+               a.url   url1,
+               a.score,
+               a.author,
+               a.broadcast,
+               a.brief,
+               a.pub_date,
+               c.id    cid,
+               c.title title2,
+               c.url   url2,
+               c.size,
+               c.duration,
+               c.upload_date
         from album a left join chapter c
         on a.id=c.aid
 
