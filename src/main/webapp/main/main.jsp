@@ -6,11 +6,14 @@
     <link rel="stylesheet" type="text/css" href="../themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="../themes/IconExtension.css">
     <link rel="stylesheet" type="text/css" href="../themes/icon.css">
+
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="../js/datagrid-detailview.js"></script>
     <script type="text/javascript" src="../js/jquery.edatagrid.js"></script>
     <script type="text/javascript" src="../js/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="../js/echarts.js"></script>
+    <script type="text/javascript" src="../js/china.js"></script>
     <style type="text/css">
         #m2 {
             position: relative;
@@ -19,6 +22,7 @@
     </style>
     <script type="text/javascript">
         $(function () {
+            /*左边菜单查询显示*/
             $.ajax({
                 type: "get",
                 url: "${pageContext.request.contextPath}/menu/menuQuery",
@@ -26,11 +30,9 @@
                 success: function (data) {
                     //console.log(data);
                     $.each(data, function (index, menu1) {
-
                         var a = "";
                         $.each(menu1.list, function (index, menu2) {
-                            console.log(menu2.url);
-                            a += "<div id='m2'><a class='easyui-linkbutton' onclick=\"addTab('" + menu2.title + "','" + menu2.iconcls + "','" + menu2.url + "')\" data-options=\"text:'" + menu2.title + "',iconCls:'" + menu2.iconcls + "'\"/></div>";
+                            a += "<div><a class='easyui-linkbutton' onclick=\"addTab('" + menu2.title + "','" + menu2.iconcls + "','" + menu2.url + "')\" data-options=\"text:'" + menu2.title + "',iconCls:'" + menu2.iconcls + "'\"/></div>";
                         });
                         $("#aa").accordion("add", {
                             title: menu1.title,
@@ -45,7 +47,7 @@
 
         });
 
-        //点击左边触发函数，创建选项卡，获得选项卡标题，获得选项卡的面板内容(由另一个页面提供)。
+        //点击左边触发的函数，创建选项卡，获得选项卡标题，获得选项卡的面板内容(由另一个页面提供)。
         function addTab(title, iconcls, url) {
 
             //选项卡的名字，图标，url（是填充到选项卡面板的jsp页面，jsp中请求后台数据）

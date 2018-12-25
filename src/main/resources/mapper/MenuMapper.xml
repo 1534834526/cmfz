@@ -3,12 +3,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.baizhi.mapper.MenuMapper">
     <resultMap id="rm1" type="com.baizhi.entity.Menu">
-        <id property="id" column="id"></id>
+        <id property="id" column="id1"></id>
         <result property="title" column="title1"></result>
         <result property="iconcls" column="iconcls1"></result>
         <result property="url" column="url1"></result>
         <collection property="list" ofType="com.baizhi.entity.Menu">
-            <id property="id" column="id"></id>
+            <id property="id" column="id2"></id>
             <result property="title" column="title2"></result>
             <result property="iconcls" column="iconcls2"></result>
             <result property="url" column="url2"></result>
@@ -16,7 +16,14 @@
     </resultMap>
 
     <select id="menuQueryAll" resultMap="rm1">
-        select m1.title title1,m1.iconcls iconcls1,m1.url url1,m2.title title2,m2.iconcls iconcls2,m2.url url2
+        select m1.id      id1,
+               m1.title   title1,
+               m1.iconcls iconcls1,
+               m1.url     url1,
+               m2.id      id2,
+               m2.title   title2,
+               m2.iconcls iconcls2,
+               m2.url     url2
         from menu m1
                  left join menu m2
                            on m1.id = m2.parent_id

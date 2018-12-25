@@ -14,9 +14,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.UUID;
 
 @SpringBootTest(classes = AppStart.class)
@@ -69,9 +67,8 @@ public class test {
 
         temp=seconds%3600%60;
         sb.append((temp<10)?"0"+temp:""+temp);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-        Date date = dateFormat.parse(sb.toString());
-        System.out.println(date);
+
+        System.out.println(sb.toString());
     }
 
 

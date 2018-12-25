@@ -67,7 +67,7 @@ public class ChapterController {
         // 单位为秒
         int time = audioHeader.getTrackLength();
         //转成时分秒日期--再转成字符串存入数据库
-        String date = TimeConvertMinute.getDate(time).toString();
+        String date = TimeConvertMinute.getStringDate(time);
 
 
         //保存数据库
@@ -89,16 +89,15 @@ public class ChapterController {
         String realPath = servletContext.getRealPath("/music/");
 
         File file = new File(realPath + musicUrl);
-
-        //数据库中截取后的音频名  时间戳，但高并发会有问题,使用uuid
-        String musicUrl2 = musicUrl.substring(36);
-
         byte[] bytes = FileUtils.readFileToByteArray(file);
         //通过响应流响应到客户端，响应之前设置响应头
 
+        //数据库中截取后的音频名
+        String musicUrl2 = musicUrl.substring(36);
         response.setContentType("audio/mpeg");
         response.setHeader("content-disposition", "attachment;filename=" + URLEncoder.encode(musicUrl2, "UTF-8"));
         ServletOutputStream outputStream = response.getOutputStream();
+        //通过响应流,将字节数组的内容，以视频附件的形式写出到客户端
         outputStream.write(bytes);
         if (outputStream != null) {
             outputStream.flush();

@@ -28,4 +28,5 @@ public class User implements Serializable {
     private Integer status;
     @Column(name = "reg_date")
     private Date regDate;
+
 }

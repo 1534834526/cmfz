@@ -4,6 +4,7 @@ import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
 import com.baizhi.entity.Album;
 import com.baizhi.service.AlbumService;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +37,7 @@ public class ExportController {
         //方法2
         Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams("所有专辑", "韩高明"),
                 Album.class, albums);
+        workbook.createCellStyle().setAlignment(HSSFCellStyle.ALIGN_CENTER);
         response.setContentType("application/vnd.ms-excel; charset=utf-8");
         response.addHeader("Content-Disposition", "attachment;filename=aa.xls");
         response.setCharacterEncoding("utf-8");
