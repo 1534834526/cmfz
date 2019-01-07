@@ -1,5 +1,6 @@
 package com.baizhi.service;
 
+import com.baizhi.entity.User;
 import com.baizhi.entity.UserCount;
 import com.baizhi.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,13 @@ public class UserServiceImpl implements UserService {
         }
 
         return list;
+    }
+
+    @Override
+    public void addUser(User user) {
+
+        userMapper.insert(user);
+
     }
 
 

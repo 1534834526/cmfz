@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
 import org.springframework.boot.autoconfigure.web.WebMvcRegistrationsAdapter;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -15,6 +16,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 @SpringBootApplication
 @MapperScan("com.baizhi.mapper")
 @Configuration
+@EnableCaching
 public class AppStart extends WebMvcRegistrationsAdapter {
     public static void main(String[] args) {
         SpringApplication.run(AppStart.class, args);

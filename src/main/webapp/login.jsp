@@ -149,7 +149,7 @@
                 <td>&nbsp;</td>
                 <th>&nbsp;</th>
                 <td>
-                    <input type="button" class="homeButton" value="" onclick="location.href='/'"><a id="loginBtn"/>
+                    <input type="button" class="homeButton" value="" onclick="location.href='..'"><a id="loginBtn"/>
                 </td>
             </tr>
             </tbody>

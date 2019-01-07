@@ -66,7 +66,7 @@
             <artifactId>tomcat-embed-jasper</artifactId>
         </dependency>
 
-        <!--页面取值使用-->
+        <!--jsp页面取值使用-->
         <dependency>
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
@@ -98,8 +98,6 @@
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>1.2.10</version>
         </dependency>
-
-
 
         <!-- https://mvnrepository.com/artifact/org/jaudiotagger -->
         <!--音频jar-->
@@ -151,9 +149,138 @@
             <scope>provided</scope>
         </dependency>
 
+        <!--goeasy推送所需jar-->
+        <dependency>
+            <groupId>io.goeasy</groupId>
+            <artifactId>goeasy-sdk</artifactId>
+            <version>0.3.8</version>
+        </dependency>
+
+
+        <!--飞鸽短信验证调用接口时，所需jar-->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpasyncclient</artifactId>
+            <version>4.1.2</version>
+        </dependency>
+
+
+        <!--网易云信的短信验证所需jar-->
+        <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>4.4.3</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.1</version>
+        </dependency>
+
+
+        <!--配置使用 redis 启动器 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+
+        <!--lucene所需核心jar和通用分词器jar-->
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-core</artifactId>
+            <version>4.4.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-analyzers-common</artifactId>
+            <version>4.4.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.janeluo/ikanalyzer -->
+        <!--第三方分词器（自定义分词器）ik所需jar-->
+        <dependency>
+            <groupId>com.janeluo</groupId>
+            <artifactId>ikanalyzer</artifactId>
+            <version>2012_u6</version>
+        </dependency>
+        <!--中文智能分词器-->
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-analyzers-smartcn</artifactId>
+            <version>4.4.0</version>
+        </dependency>
+        <!--Query的实现类MultiFieldQueryParser查询规则，多属性查询所需jar-->
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-queryparser</artifactId>
+            <version>4.4.0</version>
+        </dependency>
+
+
+        <!--Lucene查询结果高亮所需jar-->
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-highlighter</artifactId>
+            <version>4.4.0</version>
+        </dependency>
+
+        <!--shiro认证授权 所需核心jar   java方式只需此包-->
+        <!-- https://mvnrepository.com/artifact/org.apache.shiro/shiro-core -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+
+        <!--shiro 集成springboot开发    web方式  核心包+其它包-->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-web</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-ehcache</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+
+        <!--微信二维码-->
+        <!--  <dependency>
+              <groupId>com.baizhi</groupId>
+              <artifactId>QRCode</artifactId>
+              <version>1.0.0</version>
+          </dependency>-->
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
 
 
     </dependencies>
+
+
+    <!--goeasy推送所需jar的仓库(中心仓库没有)-->
+    <repositories>
+        <repository>
+            <id>goeasy</id>
+            <name>goeasy</name>
+            <url>
+                http://maven.goeasy.io/content/repositories/releases/
+            </url>
+        </repository>
+    </repositories>
+
 
     <build>
         <plugins>
@@ -163,14 +290,10 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.5.1</version>
-
-
-
 
                 <configuration>
                     <source>1.7</source>
@@ -182,7 +305,6 @@
                     </compilerArguments>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 

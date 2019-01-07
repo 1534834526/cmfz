@@ -2,7 +2,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 
 <script type="text/javascript">
-
     $(function () {
         // 1、基于准备好的dom，初始化echarts实例
         var chart = echarts.init(document.getElementById('main'));
@@ -61,16 +60,13 @@
             ]
 
         }
-
-
         chart.setOption(option);
+
 
         $.ajax({
             type: "post",
             url: "${pageContext.request.contextPath}/user/queryProvinceUserCount",
-            dataType: "JSON",
             success: function (data) {
-
                 chart.setOption({
                     series: [
                         {
@@ -91,6 +87,44 @@
                         }
                     ]
                 });
+
+            }
+        });
+
+
+        /*goeasy实时更新注册新用户后的所有数据*/
+
+        var goEasy = new GoEasy({
+            appkey: "BC-317c21a7de5e43a79646b9c6255fd12b"
+        });
+        goEasy.subscribe({
+            channel: "my_channel",
+            onMessage: function (message) {
+
+                var msg = eval("(" + message.content + ")");
+
+                chart.setOption({
+                    series: [
+                        {
+                            name: '用户分布图',
+                            type: 'map',
+                            mapType: 'china',
+                            roam: false,
+                            label: {
+                                normal: {
+                                    show: false
+                                },
+                                emphasis: {
+                                    show: true
+                                }
+                            },
+                            data: msg.data
+
+                        }
+                    ]
+                });
+
+
             }
         });
 

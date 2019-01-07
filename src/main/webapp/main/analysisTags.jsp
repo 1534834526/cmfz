@@ -47,6 +47,32 @@
                 });
             }
         });
+
+
+        var goEasy = new GoEasy({
+            appkey: "BC-317c21a7de5e43a79646b9c6255fd12b"
+        });
+        goEasy.subscribe({
+            channel: "my_channel2",
+            onMessage: function (message2) {
+
+                var msg2 = eval("(" + message2.content + ")");
+
+                myChart2.setOption({
+                    series: [{
+                        name: '柱状',
+                        type: 'bar',
+                        data: msg2.data2
+                    }, {
+                        name: '折线',
+                        type: 'line',
+                        data: msg2.data2
+                    }]
+                });
+
+
+            }
+        });
     });
 
 </script>

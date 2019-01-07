@@ -17,7 +17,9 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public String login(Admin admin) {
         Admin ad = adminMapper.selectOne(admin);
-        if (ad == null) return "loginError";
+        if (ad == null) {
+            return "loginError";
+        }
         return "loginOk";
     }
 }

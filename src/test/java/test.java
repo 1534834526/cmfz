@@ -3,6 +3,7 @@ import com.baizhi.conf.ConvertFileSize;
 import com.baizhi.conf.ValidateImageCodeUtils;
 import com.baizhi.entity.Banner;
 import com.baizhi.mapper.BannerMapper;
+import io.goeasy.GoEasy;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +57,7 @@ public class test {
 
     @Test
     public void test3() throws ParseException {
-        int seconds = 540;
+        /*int seconds = 540;
         int temp=0;
         StringBuffer sb=new StringBuffer();
         temp = seconds/3600;
@@ -68,8 +69,37 @@ public class test {
         temp=seconds%3600%60;
         sb.append((temp<10)?"0"+temp:""+temp);
 
-        System.out.println(sb.toString());
+        System.out.println(sb.toString());*/
     }
+
+    @Test
+    public void importExcel() throws IOException {
+        // 获取本地 Excel 文件输入流，并创建工作薄对象
+       /* File file = new File("e:\\用户.xls");
+        HSSFWorkbook workbook = new HSSFWorkbook(new FileInputStream(file));
+        // 获取工作表
+        HSSFSheet sheet = workbook.getSheet("用户信息");
+        // 声明行对象
+        HSSFRow row = null;
+        //注意：获取数据 需排除标题行 从数据行开始读取
+        for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+            // 获取当前工作表中的数据行信息 数据行索引从 1 开始
+            row = sheet.getRow(i);
+            System.out.println((int)row.getCell(0).getNumericCellValue()+ " "  + row.getCell(1).getStringCellValue() + " "+ row.getCell(2).getDateCellValue());
+        }*/
+
+    }
+
+    //java版发送消息到客户端
+    @Test
+    public void testGoEasy() {
+        GoEasy goEasy = new GoEasy("http://rest-hangzhou.goeasy.io", "BC-317c21a7de5e43a79646b9c6255fd12b");
+        goEasy.publish("my_channel", "Hello, GoEasy!!!!");
+    }
+
+
+
+
 
 
 }

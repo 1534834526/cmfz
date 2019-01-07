@@ -28,7 +28,6 @@ public class AlbumController {
     public List<Album> albumQueryAll(){
         return albumService.albumQueryAll();
     }
-
     @RequestMapping("/addAlbum")
     public void addAlbum(MultipartFile file1, HttpSession session, Album album) throws IOException {
         System.out.println("file1" + file1);
